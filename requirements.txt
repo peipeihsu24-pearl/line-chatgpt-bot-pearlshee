@@ -3,5 +3,7 @@ uvicorn
 aiohttp
 line-bot-sdk
 openai
+gunicorn
+
 
 
