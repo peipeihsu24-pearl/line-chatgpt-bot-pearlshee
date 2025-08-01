@@ -1,13 +1,12 @@
 services:
   - type: web
-    name: line-chatgpt-bot-pearl
+    name: line-chatbot
     env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: python app.py
+    plan: free
+    buildCommand: ""
+    startCommand: gunicorn app:app
     envVars:
       - key: LINE_CHANNEL_ACCESS_TOKEN
         value: your-line-access-token
       - key: LINE_CHANNEL_SECRET
         value: your-line-secret
-      - key: OPENAI_API_KEY
-        value: your-openai-key
