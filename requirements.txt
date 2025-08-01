@@ -1,9 +1,9 @@
-fastapi
-uvicorn
-aiohttp
+flask
+gunicorn
 line-bot-sdk
 openai
-gunicorn
+aiohttp==3.8.4
+
 
 
 
