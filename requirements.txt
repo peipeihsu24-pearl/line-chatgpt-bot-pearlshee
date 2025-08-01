@@ -1,8 +1,7 @@
-flask
-gunicorn
-line-bot-sdk
-openai
-aiohttp==3.8.4
+Flask==2.3.3
+line-bot-sdk==2.4.1
+gunicorn==21.2.0
+
 
 
 
