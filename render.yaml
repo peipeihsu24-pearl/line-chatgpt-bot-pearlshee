@@ -1,13 +1,16 @@
 services:
   - type: web
-    name: line-chatgpt-bot
-    env: python
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: "gunicorn app:app"
+    name: line-gpt-bot
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
     envVars:
-      - key: LINE_CHANNEL_SECRET
-        value: your_channel_secret
       - key: LINE_CHANNEL_ACCESS_TOKEN
-        value: your_channel_access_token
+        sync: false
+      - key: LINE_CHANNEL_SECRET
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+
 
 
