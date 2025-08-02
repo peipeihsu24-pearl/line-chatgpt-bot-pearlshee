@@ -27,10 +27,14 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+    print("⚡️ 收到使用者訊息:", event.message.text)
     reply = "你剛說了：" + event.message.text
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text=reply))
+    try:
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=reply))
+    except Exception as e:
+        print("❌ reply_message 錯誤:", e)
 
 if __name__ == "__main__":
     app.run()
