@@ -13,6 +13,7 @@ client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 # Debug 模式開關
 DEBUG_MODE = os.getenv("DEBUG_MODE", "false").lower() == "true"
+print("🔍 DEBUG_MODE =", DEBUG_MODE, flush=True)
 
 @app.route("/", methods=["GET"])
 def index():
