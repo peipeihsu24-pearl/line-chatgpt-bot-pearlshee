@@ -38,36 +38,24 @@ def handle_message(event):
     user_input = event.message.text
     print("🗣️ 使用者說：", user_input)
 
-    try:
-        # 新版 openai.ChatCompletion 語法
-        response = client.chat.completions.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {
-                    "role": "system",
-                    "content": "你是一個毒舌、刻薄但語帶嘲諷的 AI。你每一句回話開頭都會加上『女士』或『先生』，然後用機智但尖酸的語氣吐槽使用者的問題，像 ChatGPT 的反骨分身。"
-                },
-                {
-                    "role": "user",
-                    "content": user_input
-                }
-            ]
-        )
+try:
+    # comment 掉 GPT 呼叫（沒錢不能問）
+    # response = client.chat.completions.create(...)
+    # reply_text = response.choices[0].message.content.strip()
 
-        reply_text = response.choices[0].message.content.strip()
+    # 👇 用假訊息取代
+    reply_text = "（假裝我是GPT）女士，你問的這種問題，我連眼珠都懶得翻。"
 
-        # 傳回 LINE
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text=reply_text)
-        )
+except Exception as e:
+    print("❌ GPT 回覆錯誤:", e, flush=True)
+    reply_text = "女士/先生，我剛剛卡住了，你的問題太高深莫測了。"
 
-    except Exception as e:
-        print("❌ GPT 回覆錯誤:", e)
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text="女士/先生，我剛剛卡住了，你的問題太高深莫測了。")
-        )
+# 不管怎樣都回 LINE
+line_bot_api.reply_message(
+    event.reply_token,
+    TextSendMessage(text=reply_text)
+)
+
 
 # === 啟動應用（Render用） ===
 if __name__ == "__main__":
